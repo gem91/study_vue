@@ -16,11 +16,27 @@ export default {
   methods: {
     findBtn: function(){
       console.log(this.searchVideo);
+      // fetch('App.vue').then(function(response){
+      //   response.text().then(function(text){
+      //     alert(text);
+      //   })
+      // })
+      alert('requestOptions')
       this.clearInput();
     },
     clearInput: function(){
     this.searchVideo = '';
     }
+  },
+  created: function(){
+    var requestOptions = {
+      method: 'GET',
+      redirect: 'follow'
+    };
+    fetch("https://youtube.googleapis.com/youtube/v3/search?key=AIzaSyC6dHDnoegM5vg1Iu2OLLGku9_QV4n06MQ&part=snippet&maxResults=25&q=bts&type=video&key=AIzaSyC6dHDnoegM5vg1Iu2OLLGku9_QV4n06MQ", requestOptions)
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
   }
 }
 </script>
